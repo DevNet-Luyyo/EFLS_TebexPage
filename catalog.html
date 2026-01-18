@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EFLS Script Catalog | DevNet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0a0c0d",
+                        "card-dark": "#121d21",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .hud-border {
+            border: 1px solid rgba(13, 185, 242, 0.2);
+            position: relative;
+        }
+        .hud-border::before, .hud-border::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-color: #0db9f2;
+            border-style: solid;
+        }
+        .hud-border::before {
+            top: -1px;
+            left: -1px;
+            border-width: 2px 0 0 2px;
+        }
+        .hud-border::after {
+            bottom: -1px;
+            right: -1px;
+            border-width: 0 2px 2px 0;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(13, 185, 242, 0.05) 51%);
+            background-size: 100% 4px;
+        }
+        .mono-tech {
+            font-family: 'Space Grotesk', monospace;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Navigation -->
+<header class="border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark font-bold">terminal</span>
+</div>
+<h2 class="text-xl font-bold tracking-tighter mono-tech">DevNet <span class="text-primary">//</span> EFLS</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">SCRIPTS</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">WIKI</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">COMMUNITY</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">SUPPORT</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/50 text-xl">search</span>
+<input class="bg-card-dark/50 border border-primary/20 rounded-lg pl-10 pr-4 py-1.5 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none w-64 mono-tech" placeholder="SYSTEM_SEARCH..." type="text"/>
+</div>
+<button class="p-2 hover:bg-primary/10 rounded-lg text-primary transition-colors relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary/20 border border-primary/40 overflow-hidden">
+<img alt="User operator avatar profile" class="w-full h-full object-cover" data-alt="Tactical operator avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnaN3C4F9WQUWatYFuJTLCenzDyPecAFyU1mEkNxpVRe0TW9sfMfV6n-VqVAMOItaE9BBXBH7gmmZQWC8ksZ2JIYmVt5W5QdjVWYwH8qLOibCdgX4WxwwmqwboKl_VFP0rzjIkjWemOpXsDwMkLH_h4JTmXxd8GYAowtKNlvorA_6hvrw-MM3K6x8q27iimegA0CXmw5WWL13QUeb3hzg-U7EEIN52B0p3UviafvOE8bgrosD2MFeiiZ9LW9pQ_oj2xNEPJL-rOY0"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Hero Section -->
+<div class="relative mb-12 rounded-xl overflow-hidden hud-border bg-card-dark">
+<div class="absolute inset-0 scanline opacity-30 pointer-events-none"></div>
+<div class="relative z-10 p-8 md:p-16 flex flex-col items-start gap-6 bg-gradient-to-r from-background-dark via-background-dark/80 to-transparent">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-bold mono-tech">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                    SYSTEM_STATUS: OPERATIONAL
+                </div>
+<h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight max-w-2xl">
+                    EFLS SCRIPT <br/><span class="text-primary">CATALOG</span>
+</h1>
+<p class="text-slate-400 text-lg max-w-xl">
+                    High-performance extraction shooter modules for QBCore. Hardcore immersion, tactical UI, and optimized server-side logic.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 px-8 rounded-lg mono-tech transition-all transform hover:scale-105">
+                        INITIALIZE_WIKI
+                    </button>
+<button class="border border-primary/40 hover:bg-primary/10 text-primary font-bold py-3 px-8 rounded-lg mono-tech transition-all">
+                        DISCORD_LINK
+                    </button>
+</div>
+</div>
+<div class="absolute inset-0 -z-10 bg-cover bg-center opacity-40" data-alt="Dark tactical military base background grid" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7uYRYioXA1x8s3UvLmND3wuCJmQK9d_afSqcz2tWUVU6QIbposFkO-qmicqTY2zG-y2F6qLoB93TOwj5fGfumpdwPAcz7ZVv2_426N7F-V9d60hX33TDo1wRTOrFwMoHF6iLsithxRxG0yG99W9JXn5OvEYmiGvYvoZPCttWCyivi1LesEhftRcx2YcmuwQpbZzCpZsMuzlP48KIVr7xay3ZD5jNMtheC30esbIQwIWgeMmpFHPwVxnbrwT_pGqwhGOxW0SDDvn8');"></div>
+</div>
+<!-- Filters & Search -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+<div class="flex gap-2 p-1 bg-card-dark border border-primary/10 rounded-xl overflow-x-auto w-full md:w-auto">
+<button class="px-5 py-2 rounded-lg bg-primary text-background-dark font-bold text-xs mono-tech">ALL_UNITS</button>
+<button class="px-5 py-2 rounded-lg hover:bg-primary/10 text-slate-400 hover:text-primary font-bold text-xs mono-tech transition-colors">COMBAT</button>
+<button class="px-5 py-2 rounded-lg hover:bg-primary/10 text-slate-400 hover:text-primary font-bold text-xs mono-tech transition-colors">ECONOMY</button>
+<button class="px-5 py-2 rounded-lg hover:bg-primary/10 text-slate-400 hover:text-primary font-bold text-xs mono-tech transition-colors">MEDICAL</button>
+<button class="px-5 py-2 rounded-lg hover:bg-primary/10 text-slate-400 hover:text-primary font-bold text-xs mono-tech transition-colors">UI_EXT</button>
+</div>
+<div class="text-xs text-primary/60 mono-tech hidden lg:block">
+                FILTERING_BY: <span class="text-primary underline">CATEGORY::ALL</span> | RESULTS: 12_FOUND
+            </div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="group bg-card-dark hud-border rounded-lg overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(13,185,242,0.15)]">
+<div class="relative aspect-video">
+<div class="absolute top-2 right-2 z-20 px-2 py-1 bg-background-dark/80 backdrop-blur border border-primary/40 rounded text-[10px] font-bold text-primary mono-tech">
+                        QBCORE_EXCLUSIVE
+                    </div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-60"></div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Futuristic blue medical HUD interface screenshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAavxBkikGRP64lfOrl78pHDAiW1xOhPLRn_-RTUyaJo8wHnfc3ky1YuSaos2AdC1jdlstW4APGJYvUMIksR-ZSD6ZZ5shFOmr3k_7ROFEGq8MU56OVYclsgJ54Dmx8lKIrL_I65DT4lQ9P7JcAzLLMwogevoopEeO4FfUbhY2lNxVLjdo-JESsfGZQXN5xbUj8XAmhAPVQxYfu3WH7HWyk9HDkZqjXtNL58IZmE67dDaFftqAie5XI7HNPuNXGWfk6U2PwvkfUVMo"/>
+<div class="absolute inset-0 scanline opacity-20 pointer-events-none"></div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-white leading-tight">ADV_MEDICAL_HUD</h3>
+<span class="text-primary font-bold mono-tech">$29.99</span>
+</div>
+<p class="text-slate-400 text-sm line-clamp-2">
+                        Advanced vital signs monitoring with persistent limb damage and hardcore trauma system.
+                    </p>
+<div class="flex items-center gap-2 pt-2">
+<span class="px-2 py-0.5 rounded bg-primary/5 text-primary text-[10px] mono-tech border border-primary/10">MEDICAL</span>
+<span class="px-2 py-0.5 rounded bg-primary/5 text-primary text-[10px] mono-tech border border-primary/10">HUD</span>
+</div>
+<button class="mt-2 w-full bg-primary/10 hover:bg-primary text-primary hover:text-background-dark font-bold py-2 rounded text-sm mono-tech transition-all border border-primary/30">
+                        PURCHASE_LICENSE
+                    </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-card-dark hud-border rounded-lg overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(13,185,242,0.15)]">
+<div class="relative aspect-video">
+<div class="absolute top-2 right-2 z-20 px-2 py-1 bg-background-dark/80 backdrop-blur border border-primary/40 rounded text-[10px] font-bold text-primary mono-tech">
+                        QBCORE_EXCLUSIVE
+                    </div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Tactical gear equipment inventory management screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpOaNMygax_M79HGwIvjmnCklPHPnvyZtG6juBvYQNmjHYb1AnSBjF2iBuJJInos0Ujbx5mgR9ev01LeC-mcvtYQP8P2xI9CxKngOKUlFqsie8gjf0cnz7xDBppSyFexXL6_-eCFyP9FSqScJCu80NeXkhG3Ko2iC_eaZ_3luoSW-9kfVcQS0WIH3NCXHJjMQ0LOfvag26DCYh58D1BVXwKZhj4GAEJBhqMLIsryuIFVEaGTIhhMDleQONk42lfQ9OPc9VJKTEt5Y"/>
+<div class="absolute inset-0 scanline opacity-20 pointer-events-none"></div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-white leading-tight">TACTICAL_RIGS</h3>
+<span class="text-primary font-bold mono-tech">$19.99</span>
+</div>
+<p class="text-slate-400 text-sm line-clamp-2">
+                        Container-based inventory physics for vests and backpacks. Realistic loot extraction mechanics.
+                    </p>
+<div class="flex items-center gap-2 pt-2">
+<span class="px-2 py-0.5 rounded bg-primary/5 text-primary text-[10px] mono-tech border border-primary/10">COMBAT</span>
+<span class="px-2 py-0.5 rounded bg-primary/5 text-primary text-[10px] mono-tech border border-primary/10">ITEMS</span>
+</div>
+<button class="mt-2 w-full bg-primary/10 hover:bg-primary text-primary hover:text-background-dark font-bold py-2 rounded text-sm mono-tech transition-all border border-primary/30">
+                        PURCHASE_LICENSE
+                    </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-card-dark hud-border rounded-lg overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(13,185,242,0.15)]">
+<div class="relative aspect-video">
+<div class="absolute top-2 right-2 z-20 px-2 py-1 bg-background-dark/80 backdrop-blur border border-primary/40 rounded text-[10px] font-bold text-primary mono-tech">
+                        QBCORE_EXCLUSIVE
+                    </div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Global trading terminal interface for economy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_0s6oe9HpjHaa1_jMk2PEVMehmcCZve2l77gg4OX_fu43QS2MH5a9jiQ7wNO8e-rt45GFgl8zXvhR7gUMSBF_dOy-Rtnf2_Y48P6gDLhN1nGl5pzbNHW0Ac6YDz0UBNnq07_UV1A6twbx-WEze7U2uowsdC7SqqSvnPcPm97zfoLYg2nBkwzQm_YsXIDFM4MO_4Uonfv0ti986xC4dZJPcQCzix-Z-3pdAgwZ0qvgwWmU1w8p8kc6UD5mcHsWtDWKuYWBNV18Mfw"/>
+<div class="absolute inset-0 scanline opacity-20 pointer-events-none"></div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-white leading-tight">MARKET_TERMINAL</h3>
+<span class="text-primary font-bold mono-tech">$24.99</span>
+</div>
+<p class="text-slate-400 text-sm line-clamp-2">
+                        Cross-server global trade network with dynamic price fluctuations based on item scarcity.
+                    </p>
+<div class="flex items-center gap-2 pt-2">
+<span class="px-2 py-0.5 rounded bg-primary/5 text-primary text-[10px] mono-tech border border-primary/10">ECONOMY</span>
+</div>
+<button class="mt-2 w-full bg-primary/10 hover:bg-primary text-primary hover:text-background-dark font-bold py-2 rounded text-sm mono-tech transition-all border border-primary/30">
+                        PURCHASE_LICENSE
+                    </button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group bg-card-dark hud-border rounded-lg overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(13,185,242,0.15)]">
+<div class="relative aspect-video">
+<div class="absolute top-2 right-2 z-20 px-2 py-1 bg-background-dark/80 backdrop-blur border border-primary/40 rounded text-[10px] font-bold text-primary mono-tech">
+                        QBCORE_EXCLUSIVE
+                    </div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Blood splatter and health damage indicators" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkoDhV10LMo9_M1lokl1GFHDZgZfaOp06oHNWQR1JXYg5A5QCYkKDLjEctIuKxrPFtOahLg8gOwjo8-6QUa-p2I5kYv1GUcwvUqOFULDQSJhGzeMuc0EnvjLrvAcIyqlV6K3hnOcsDbKDqLSCnGJxTB8P_9ZGE5Fdtdeo6bqx6iQ9mENbpriPrSbi8xAivwCK6t6NbzigOV29GSp7DjK8o7qRrNfnLycfTy1EWzGma4aig9wzM3zTynr1Hv2zgdx4TIh3Tb1J5Hr8"/>
+<div class="absolute inset-0 scanline opacity-20 pointer-events-none"></div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-white leading-tight">INJURY_SYSTEM_V2</h3>
+<span class="text-primary font-bold mono-tech">$14.99</span>
+</div>
+<p class="text-slate-400 text-sm line-clamp-2">
+                        Standalone injury persistence. Bleeding, limping, and visual damage effects that survive respawn.
+                    </p>
+<div class="flex items-center gap-2 pt-2">
+<span class="px-2 py-0.5 rounded bg-primary/5 text-primary text-[10px] mono-tech border border-primary/10">MEDICAL</span>
+</div>
+<button class="mt-2 w-full bg-primary/10 hover:bg-primary text-primary hover:text-background-dark font-bold py-2 rounded text-sm mono-tech transition-all border border-primary/30">
+                        PURCHASE_LICENSE
+                    </button>
+</div>
+</div>
+<!-- Card 5 (Repeated for Grid fill) -->
+<div class="group bg-card-dark hud-border rounded-lg overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(13,185,242,0.15)]">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Loot container management UI concept" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0vHKuT7RT8PIG3sso1o7OEXWUbg-pJmjhArL_PDbrk6KsEFzbZmWTcsZI0zG28-c4nokUzmhzN5LSUM-rIjyI_gWARv028LOtJt2X1imw8Dx4ZOt-VnuF7xR9vIz-k6uXftLM4hqO-PcZoljss3AUc3DLt-vNZuHO-5uC3FVdTs2XmlLzjYwb2gfPec5Ut0PWO4VpGLEkzvOik0Ef-wDLIG1aYwJf9Kjw0QFwoN001eeHE41tRaZBlWhG6GNzZn4A-gptLDUnA6U"/>
+<div class="absolute inset-0 scanline opacity-20 pointer-events-none"></div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-white leading-tight">EXTRACT_ZONES</h3>
+<span class="text-primary font-bold mono-tech">$34.99</span>
+</div>
+<p class="text-slate-400 text-sm line-clamp-2">
+                        Dynamic extraction zone management with flare signals, timer countdowns, and protection phases.
+                    </p>
+<div class="flex items-center gap-2 pt-2">
+<span class="px-2 py-0.5 rounded bg-primary/5 text-primary text-[10px] mono-tech border border-primary/10">COMBAT</span>
+</div>
+<button class="mt-2 w-full bg-primary/10 hover:bg-primary text-primary hover:text-background-dark font-bold py-2 rounded text-sm mono-tech transition-all border border-primary/30">
+                        PURCHASE_LICENSE
+                    </button>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group bg-card-dark hud-border rounded-lg overflow-hidden transition-all hover:shadow-[0_0_20px_rgba(13,185,242,0.15)]">
+<div class="relative aspect-video">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Advanced weapon modification UI workbench" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPXc3ZaQbKzRTS92spCM6yUEHPUzUHEz8jYOI3jTLFFSGhIhbyDC2uWYAqWEompEm8EEPSoRfN9JYqt3MjUWICYq6HwqJr3zAxlHeUT3CGBnuC4lU-iKGu0lLZ2BWBBzxiqZNU7S038W27gi3vwG1y7EFZhKEDMz-e8xi6tbuR5MdcDrBoimMz6Cie4QAvHE_flYJvyBOdbmsVlwgMqE9d2c5IWCQ-QXDAwwjH-dOs8GtAUiiACyeIjcdIWEgeoiWoHus-ekNMKxg"/>
+<div class="absolute inset-0 scanline opacity-20 pointer-events-none"></div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<h3 class="text-lg font-bold text-white leading-tight">MOD_WORKBENCH</h3>
+<span class="text-primary font-bold mono-tech">$22.00</span>
+</div>
+<p class="text-slate-400 text-sm line-clamp-2">
+                        Interactive weapon modification table for swapping attachments and repairing durability.
+                    </p>
+<div class="flex items-center gap-2 pt-2">
+<span class="px-2 py-0.5 rounded bg-primary/5 text-primary text-[10px] mono-tech border border-primary/10">UI_EXT</span>
+</div>
+<button class="mt-2 w-full bg-primary/10 hover:bg-primary text-primary hover:text-background-dark font-bold py-2 rounded text-sm mono-tech transition-all border border-primary/30">
+                        PURCHASE_LICENSE
+                    </button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-20 pt-12 border-t border-primary/10 pb-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark text-xs font-bold">terminal</span>
+</div>
+<h2 class="text-lg font-bold mono-tech">DevNet</h2>
+</div>
+<p class="text-slate-500 text-sm">
+                        Leading provider of hardcore extraction shooter scripts for the FiveM QBCore framework.
+                    </p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4 mono-tech text-sm">RESOURCES</h4>
+<ul class="flex flex-col gap-2 text-slate-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">API Reference</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Asset Escrow</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4 mono-tech text-sm">SOCIAL</h4>
+<ul class="flex flex-col gap-2 text-slate-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Discord Server</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">YouTube Tutorials</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Tebex Store</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-4 mono-tech text-sm">LEGAL</h4>
+<ul class="flex flex-col gap-2 text-slate-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Refund Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-primary/5 gap-4">
+<p class="text-slate-600 text-xs mono-tech">
+                    © 2024 DEVNET_SYSTEMS. ALL_RIGHTS_RESERVED.
+                </p>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded border border-primary/20 flex items-center justify-center text-primary/40 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl">shield</span>
+</div>
+<div class="w-8 h-8 rounded border border-primary/20 flex items-center justify-center text-primary/40 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-xl">verified_user</span>
+</div>
+</div>
+</div>
+</footer>
+</main>
+</body></html>
